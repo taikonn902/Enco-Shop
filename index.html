@@ -1,146 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/global.css">
-    <title>Đăng Nhập - Enco Shop</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+    <title>ENCO Shop - Thời trang mới cho phong cách của bạn</title>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-    <!-- Animated Background -->
-    <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-pink-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+<body>
+    <!-- Slogan
+    <div class="flex justify-end w-[95%] mx-auto">
+        <p class="text-white text-sm font-medium italic bg-gradient-to-r from-[#55D5D2] to-blue-500 bg-clip-text text-transparent drop-shadow-lg py-0.5" style="text-shadow: 0 0 10px rgba(0, 0, 0, 1), 0 0 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6), 2px 2px 4px rgba(0, 0, 0, 0.9);">
+            Khi đến trẻ trâu - khi về lịch lãm
+        </p>
+    </div> -->
+
+    <header class="fixed left-1/2 top-0 z-30 flex justify-center items-center py-2 mx-auto w-full lg:w-[90%] rounded-none lg:rounded-[35px]"
+        style="left: 50%; background-color: rgba(0, 0, 0, 0.5); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); backdrop-filter: blur(7.5px); transform: translateX(-50%) translateY(0);">
+        <div class="flex justify-between items-center w-[95%]">
+            <!-- Mobile: Menu Button & Search Icon -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <button id="mobileMenuBtn" class="flex items-center justify-center w-10 h-10 text-white rounded-lg hover:bg-[#F58F5D] transition-all">
+                    <i class="fa-solid fa-bars text-2xl text-white"></i>
+                </button>
+                <button id="mobileSearchBtn" class="flex items-center justify-center w-10 h-10 text-white rounded-lg hover:bg-[#F58F5D] transition-all">
+                    <i class="fa-solid fa-magnifying-glass text-xl text-white"></i>
+                </button>
+            </div>
+            <!-- Logo - center on mobile, left on desktop -->
+            <div class="flex-1 flex justify-center lg:justify-start">
+                <a href="index.html" class="flex items-center w-12 h-12">
+                    <img src="img/logo.png" alt="logo">
+                </a>
+            </div>
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex w-[60%] justify-center items-center">
+                <ul class="flex justify-center items-center gap-6">
+                    <li><a href="index.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Trang Chủ
+                        </a></li>
+                    <li><a href="introduce.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Giới Thiệu
+                        </a></li>
+                    <li><a href="product.html" style="--line-bottom:-6px"
+                            class="relative px-4 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Sản Phẩm
+                        </a></li>
+                    <li><a href="blog.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Blog
+                        </a></li>
+                    <li><a href="contact.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Liên Hệ
+                        </a></li>
+                    <li><a href="order.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Đơn Hàng
+                        </a></li>
+                </ul>
+            </nav>
+            <!-- Mobile: User & Cart -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <a href="login.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                    <i class="text-white fa-regular fa-user text-lg"></i>
+                </a>
+                <a href="cart.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D] relative">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.47381rem" height="1.44581rem" viewBox="0 0 24 24"
+                    fill="none">
+                    <path
+                        d="M15.9218 5.78316C15.7027 5.78316 15.4926 5.69612 15.3376 5.54118C15.1827 5.38624 15.0956 5.1761 15.0956 4.95699C15.0956 4.08054 14.7475 3.23999 14.1277 2.62024C13.508 2.0005 12.6674 1.65233 11.791 1.65233C10.9145 1.65233 10.074 2.0005 9.45423 2.62024C8.83448 3.23999 8.48631 4.08054 8.48631 4.95699C8.48631 5.1761 8.39927 5.38624 8.24434 5.54118C8.0894 5.69612 7.87926 5.78316 7.66015 5.78316C7.44104 5.78316 7.2309 5.69612 7.07596 5.54118C6.92103 5.38624 6.83398 5.1761 6.83398 4.95699C6.83398 3.64232 7.35624 2.38149 8.28585 1.45187C9.21547 0.522253 10.4763 0 11.791 0C13.1057 0 14.3665 0.522253 15.2961 1.45187C16.2257 2.38149 16.748 3.64232 16.748 4.95699C16.748 5.1761 16.6609 5.38624 16.506 5.54118C16.3511 5.69612 16.1409 5.78316 15.9218 5.78316Z"
+                        fill="white"></path>
+                    <path
+                        d="M17.6561 23.1327H5.92459C5.05912 23.1325 4.22083 22.8304 3.55423 22.2784C2.88763 21.7264 2.43449 20.9592 2.27294 20.1089L0.0670791 8.54259C-0.0365575 8.00506 -0.0199343 7.45124 0.115756 6.92089C0.251446 6.39054 0.50284 5.89679 0.8519 5.47508C1.20096 5.05336 1.63903 4.71413 2.13469 4.48173C2.63034 4.24932 3.1713 4.12951 3.71873 4.13087H19.862C20.4094 4.12951 20.9504 4.24932 21.446 4.48173C21.9417 4.71413 22.3798 5.05336 22.7288 5.47508C23.0779 5.89679 23.3293 6.39054 23.465 6.92089C23.6007 7.45124 23.6173 8.00506 23.5137 8.54259L21.3078 20.1089C21.1462 20.9592 20.6931 21.7264 20.0265 22.2784C19.3599 22.8304 18.5216 23.1325 17.6561 23.1327ZM1.68636 8.2617L3.89222 19.828C3.98918 20.2952 4.24428 20.7147 4.61451 21.0157C4.98474 21.3167 5.44744 21.4808 5.92459 21.4803H17.6561C18.1333 21.4808 18.596 21.3167 18.9662 21.0157C19.3365 20.7147 19.5916 20.2952 19.6885 19.828L21.8944 8.2617C21.9542 7.96107 21.9467 7.65091 21.8723 7.35355C21.7979 7.05619 21.6585 6.77903 21.4641 6.542C21.2697 6.30497 21.0252 6.11398 20.7482 5.98278C20.4712 5.85157 20.1685 5.78341 19.862 5.7832H3.71873C3.4122 5.78341 3.10954 5.85157 2.83251 5.98278C2.55549 6.11398 2.311 6.30497 2.11663 6.542C1.92227 6.77903 1.78287 7.05619 1.70848 7.35355C1.63408 7.65091 1.62652 7.96107 1.68636 8.2617Z"
+                        fill="white"></path>
+                    <path
+                        d="M15.9218 9.91405H7.66015C7.44104 9.91405 7.2309 9.82701 7.07596 9.67207C6.92103 9.51713 6.83398 9.307 6.83398 9.08788C6.83398 8.86877 6.92103 8.65863 7.07596 8.5037C7.2309 8.34876 7.44104 8.26172 7.66015 8.26172H15.9218C16.1409 8.26172 16.3511 8.34876 16.506 8.5037C16.6609 8.65863 16.748 8.86877 16.748 9.08788C16.748 9.307 16.6609 9.51713 16.506 9.67207C16.3511 9.82701 16.1409 9.91405 15.9218 9.91405Z"
+                        fill="white"></path>
+                </svg>
+
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-1.5 py-0.5 hover:bg-red-600 transition-colors duration-300">0</span>
+                </a>
+            </div>
+            <!-- Icons desktop -->
+            <div class="hidden lg:flex w-[20%] items-center justify-end gap-3">
+                <div class="relative">
+                    <button id="searchToggle"
+                        class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                        <i class="text-white fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                </div>
+                <a href="login.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                    <i class="text-white fa-regular fa-user text-lg"></i>
+                </a>
+                <a href="wishlist.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                    <i class="text-white fa-regular fa-heart text-lg"></i>
+                </a>
+                <a href="cart.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D] relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.47381rem" height="1.44581rem" viewBox="0 0 24 24"
+                        fill="none">
+                        <path
+                            d="M15.9218 5.78316C15.7027 5.78316 15.4926 5.69612 15.3376 5.54118C15.1827 5.38624 15.0956 5.1761 15.0956 4.95699C15.0956 4.08054 14.7475 3.23999 14.1277 2.62024C13.508 2.0005 12.6674 1.65233 11.791 1.65233C10.9145 1.65233 10.074 2.0005 9.45423 2.62024C8.83448 3.23999 8.48631 4.08054 8.48631 4.95699C8.48631 5.1761 8.39927 5.38624 8.24434 5.54118C8.0894 5.69612 7.87926 5.78316 7.66015 5.78316C7.44104 5.78316 7.2309 5.69612 7.07596 5.54118C6.92103 5.38624 6.83398 5.1761 6.83398 4.95699C6.83398 3.64232 7.35624 2.38149 8.28585 1.45187C9.21547 0.522253 10.4763 0 11.791 0C13.1057 0 14.3665 0.522253 15.2961 1.45187C16.2257 2.38149 16.748 3.64232 16.748 4.95699C16.748 5.1761 16.6609 5.38624 16.506 5.54118C16.3511 5.69612 16.1409 5.78316 15.9218 5.78316Z"
+                            fill="white"></path>
+                        <path
+                            d="M17.6561 23.1327H5.92459C5.05912 23.1325 4.22083 22.8304 3.55423 22.2784C2.88763 21.7264 2.43449 20.9592 2.27294 20.1089L0.0670791 8.54259C-0.0365575 8.00506 -0.0199343 7.45124 0.115756 6.92089C0.251446 6.39054 0.50284 5.89679 0.8519 5.47508C1.20096 5.05336 1.63903 4.71413 2.13469 4.48173C2.63034 4.24932 3.1713 4.12951 3.71873 4.13087H19.862C20.4094 4.12951 20.9504 4.24932 21.446 4.48173C21.9417 4.71413 22.3798 5.05336 22.7288 5.47508C23.0779 5.89679 23.3293 6.39054 23.465 6.92089C23.6007 7.45124 23.6173 8.00506 23.5137 8.54259L21.3078 20.1089C21.1462 20.9592 20.6931 21.7264 20.0265 22.2784C19.3599 22.8304 18.5216 23.1325 17.6561 23.1327ZM1.68636 8.2617L3.89222 19.828C3.98918 20.2952 4.24428 20.7147 4.61451 21.0157C4.98474 21.3167 5.44744 21.4808 5.92459 21.4803H17.6561C18.1333 21.4808 18.596 21.3167 18.9662 21.0157C19.3365 20.7147 19.5916 20.2952 19.6885 19.828L21.8944 8.2617C21.9542 7.96107 21.9467 7.65091 21.8723 7.35355C21.7979 7.05619 21.6585 6.77903 21.4641 6.542C21.2697 6.30497 21.0252 6.11398 20.7482 5.98278C20.4712 5.85157 20.1685 5.78341 19.862 5.7832H3.71873C3.4122 5.78341 3.10954 5.85157 2.83251 5.98278C2.55549 6.11398 2.311 6.30497 2.11663 6.542C1.92227 6.77903 1.78287 7.05619 1.70848 7.35355C1.63408 7.65091 1.62652 7.96107 1.68636 8.2617Z"
+                            fill="white"></path>
+                        <path
+                            d="M15.9218 9.91405H7.66015C7.44104 9.91405 7.2309 9.82701 7.07596 9.67207C6.92103 9.51713 6.83398 9.307 6.83398 9.08788C6.83398 8.86877 6.92103 8.65863 7.07596 8.5037C7.2309 8.34876 7.44104 8.26172 7.66015 8.26172H15.9218C16.1409 8.26172 16.3511 8.34876 16.506 8.5037C16.6609 8.65863 16.748 8.86877 16.748 9.08788C16.748 9.307 16.6609 9.51713 16.506 9.67207C16.3511 9.82701 16.1409 9.91405 15.9218 9.91405Z"
+                            fill="white"></path>
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-1.5 py-0.5 hover:bg-red-600 transition-colors duration-300">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay & Nav (ngoài header) -->
+    <div id="mobileNavOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden lg:hidden"></div>
+    <div id="mobileNav" class="fixed top-0 left-0 h-full w-full bg-white z-50 flex flex-col pt-8 px-6 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden rounded-none">
+        <div class="absolute top-4 right-4">
+            <button id="closeMobileNav" class="text-black text-3xl p-2 hover:bg-gray-200 rounded-full transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <ul class="flex flex-col gap-6 items-start mt-8">
+            <li><a href="index.html" class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Trang Chủ</a></li>
+            <li><a href="introduce.html" class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Giới Thiệu</a></li>
+            <li><a href="product.html" class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Sản Phẩm</a></li>
+            <li><a href="blog.html" class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Blog</a></li>
+            <li><a href="contact.html" class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Liên Hệ</a></li>
+            <li><a href="order.html" class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Đơn Hàng</a></li>
+        </ul>
     </div>
 
-    <!-- Main Container -->
-    <div class="relative z-10 min-h-screen flex items-center justify-center p-4 md:items-center md:justify-center items-start mt-10 md:mt-0">
-        <div class="w-full max-w-lg">
-            <!-- Login Card -->
-            <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
-                <!-- Header -->
-                <div class="p-6 text-center">
-                    <div class="mb-4">
-                        <div class="inline-flex items-center justify-center w-12 h-12 border border-black rounded-xl mb-3 shadow-lg">
-                            <img src="img/logo.png" alt="logo" class="w-10 h-10">
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden z-50">
+        <div class="flex items-start justify-start min-h-screen p-4 mt-0">
+            <div id="searchContainer"
+                class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform transition-all duration-500 scale-95 opacity-0">
+                <!-- Search Header -->
+                <div
+                    class="flex items-center justify-between p-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-blue-50 rounded-t-2xl">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass text-white text-sm"></i>
                         </div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-1">
-                            ENCO SHOP
-                        </h1>
-                        <p class="text-gray-600 text-sm">Đăng nhập để tiếp tục</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Tìm kiếm sản phẩm thời trang</h3>
+                            <p class="text-xs text-gray-500">Khám phá bộ sưu tập quần áo, phụ kiện mới nhất</p>
+                        </div>
                     </div>
+                    <button id="closeSearch"
+                        class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all duration-300 group">
+                        <i
+                            class="fa-solid fa-times text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    </button>
                 </div>
 
-                <!-- Login Form -->
-                <div class="px-6 pb-6">
-                    <form id="loginForm" class="space-y-4">
-                        <!-- Email Input with Floating Label -->
+                <!-- Search Input -->
+                <div class="p-4">
+                    <form id="searchForm" action="#" class="relative">
                         <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-xl blur-lg opacity-20"></div>
-                            <div class="relative bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
-                                <div class="relative px-4 py-2">
-                                    <input type="email" id="email" name="email" required
-                                        class="w-full bg-transparent border-none outline-none text-gray-900 px-4 py-1.5 transition-all duration-300 peer"
-                                        placeholder=" ">
-                                    <label for="email" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:left-1 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:text-blue-600 peer-[:not(:placeholder-shown)]:left-1">
-                                        Email
-                                    </label>
-                                </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-xl blur-lg opacity-30 animate-pulse">
                             </div>
-                        </div>
-
-                        <!-- Password Input with Floating Label -->
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-xl blur-lg opacity-20"></div>
-                            <div class="relative bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
-                                <div class="relative px-4 py-2">
-                                    <input type="password" id="password" name="password" required
-                                        class="w-full bg-transparent border-none outline-none text-gray-900 px-4 pr-12 py-1.5 transition-all duration-300 peer"
-                                        placeholder=" ">
-                                    <label for="password" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:left-1 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:text-blue-600 peer-[:not(:placeholder-shown)]:left-1">
-                                        Mật khẩu
-                                    </label>
-                                    <button type="button" id="togglePassword" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-300">
-                                        <i class="fas fa-eye-slash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Remember Me & Forgot Password -->
-                        <div class="flex items-center justify-between text-sm">
-                            <label class="flex items-center cursor-pointer">
-                                <div class="relative">
-                                    <input type="checkbox" id="remember" name="remember" class="sr-only">
-                                    <div class="w-4 h-4 bg-gray-200 rounded border border-gray-300 flex items-center justify-center transition-all duration-300">
-                                        <i class="fas fa-check text-white text-xs opacity-0 transition-opacity duration-300"></i>
+                            <div
+                                class="relative bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20 overflow-hidden">
+                                <div class="flex items-center px-2 py-2">
+                                    <div class="flex-shrink-0 mr-2 pl-1.5">
+                                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-lg"></i>
+                                    </div>
+                                    <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm..."
+                                        class="flex-1 bg-transparent border-none outline-none text-base text-gray-800 placeholder-gray-400 focus:placeholder-gray-300 transition-all duration-300 font-medium py-1 px-1">
+                                    <div class="flex-shrink-0 ml-2">
+                                        <button type="submit"
+                                            class="flex items-center justify-center w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow transition-all duration-300">
+                                            <i class="fa-solid fa-magnifying-glass text-base text-white"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <span class="ml-2 text-gray-600">Ghi nhớ</span>
-                            </label>
-                            <a href="#" class="text-[#55D5D2] hover:text-[#F58F5D] transition-colors duration-300">Quên mật khẩu?</a>
-                        </div>
-
-                        <!-- Login Button -->
-                        <div class="flex gap-3 mt-6">
-                            <button type="button" onclick="window.location.href='index.html'" class="flex-1 relative group">
-                                <div class="relative bg-red-300 rounded-xl px-6 py-3 text-white font-semibold shadow-sm transition-all duration-300 flex items-center justify-center border border-red-400 hover:bg-red-400 hover:border-red-500">
-                                    <span class="text-white">Hủy</span>
-                                    <i class="fas fa-times ml-2 transition-transform duration-300 text-white"></i>
-                                </div>
-                            </button>
-                            <button type="submit" class="flex-1 relative group">
-                                <div class="relative bg-[#55D5D2] hover:bg-[#F58F5D] rounded-xl px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 flex items-center justify-center">
-                                    <span class="text-white">Đăng Nhập</span>
-                                    <i class="fas fa-arrow-up group-hover:fa-arrow-right ml-2 transform rotate-45 group-hover:rotate-90 transition-transform duration-300 text-white"></i>
-                                </div>
-                            </button>
+                            </div>
                         </div>
                     </form>
 
-                    <!-- Divider -->
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-200"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-3 bg-white text-gray-500 rounded-full text-xs">hoặc</span>
+                    <!-- Search Suggestions -->
+                    <div id="searchSuggestions" class="mt-6">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-yellow-500"></i>
+                            Gợi ý tìm kiếm
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-black rounded-lg text-sm font-medium cursor-pointer hover:from-blue-100 hover:to-indigo-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-blue-100">
+                                <i class="fa-solid fa-shirt mr-1"></i>Áo thun
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-green-50 to-emerald-50 text-black rounded-lg text-sm font-medium cursor-pointer hover:from-green-100 hover:to-emerald-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-green-100">
+                                <i class="fa-solid fa-user-tie mr-1"></i>Áo sơ mi
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-purple-50 to-pink-50 text-black rounded-lg text-sm font-medium cursor-pointer hover:from-purple-100 hover:to-pink-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-purple-100">
+                                <i class="fa-solid fa-person-dress mr-1"></i>Váy nữ
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-orange-50 to-red-50 text-orange-700 rounded-lg text-sm font-medium cursor-pointer hover:from-orange-100 hover:to-red-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-orange-100">
+                                <i class="fa-solid fa-shoe-prints mr-1"></i>Giày sneaker
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-700 rounded-lg text-sm font-medium cursor-pointer hover:from-teal-100 hover:to-cyan-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-teal-100">
+                                <i class="fa-solid fa-hat-cowboy mr-1"></i>Phụ kiện
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Social Login -->
-                    <div class="space-y-2">
-                        <button class="w-full relative group">
-                            <div class="relative bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-200 hover:bg-red-50 hover:border-red-300 hover:scale-105 transition-all duration-300 flex items-center justify-center">
-                                <i class="fab fa-google text-red-500 mr-2"></i>
-                                <span class="text-gray-700 text-sm font-medium">Google</span>
+                    <!-- Hot Search -->
+                    <div id="hotSearch" class="mt-6">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-red-500"></i>
+                            Tìm kiếm phổ biến
+                        </h4>
+                        <div class="space-y-3">
+                            <div
+                                class="flex items-center justify-between p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg cursor-pointer hover:from-red-100 hover:to-pink-100 hover:scale-102 scale-80 transition-all duration-300 shadow-sm hover:shadow-md border border-red-100">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                                        1</div>
+                                    <span class="text-black font-medium text-sm">Áo thun local brand</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-red-500 font-medium">HOT</span>
+                                    <i class="fa-solid fa-fire text-red-500 text-sm"></i>
+                                </div>
                             </div>
-                        </button>
-                        
-                        <button class="w-full relative group">
-                            <div class="relative bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-200 hover:bg-blue-50 hover:border-blue-300 hover:scale-105 transition-all duration-300 flex items-center justify-center">
-                                <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
-                                <span class="text-gray-700 text-sm font-medium">Facebook</span>
+                            <div
+                                class="flex items-center justify-between p-3 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg cursor-pointer hover:from-orange-100 hover:to-yellow-100 hover:scale-102 scale-80 transition-all duration-300 shadow-sm hover:shadow-md border border-orange-100">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                                        2</div>
+                                    <span class="text-gray-800 font-medium text-sm">Quần jeans rách gối</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-orange-500 font-medium">TRENDING</span>
+                                    <i class="fa-solid fa-fire text-orange-500 text-sm"></i>
+                                </div>
                             </div>
-                        </button>
-                    </div>
-
-                    <!-- Register Link -->
-                    <div class="text-center mt-4">
-                        <p class="text-gray-500 text-xs">
-                            Chưa có tài khoản? 
-                            <a href="register.html" class="text-[#55D5D2] hover:text-[#F58F5D] font-medium transition-colors duration-300">Đăng ký</a>
-                        </p>
+                            <div
+                                class="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg cursor-pointer hover:from-blue-100 hover:to-indigo-100 hover:scale-102 scale-80 transition-all duration-300 shadow-sm hover:shadow-md border border-blue-100">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                                        3</div>
+                                    <span class="text-black font-medium text-sm">Váy maxi nữ</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-blue-500 font-medium">POPULAR</span>
+                                    <i class="fa-solid fa-fire text-blue-500 text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="js/login.js"></script>
+    <main class="">
+        <!-- Banner Section -->
+        <section class="relative overflow-hidden">
+            <!-- Background with gradient overlay -->
+            <div class="relative h-[600px] bg-gradient-to-br from-[#7ee6e1] via-[#55D5D2] to-[#F58F5D] pt-12">
+                <!-- Animated background elements -->
+                <div class="absolute inset-0">
+                    <div class="absolute top-20 left-20 w-32 h-32 bg-blue-500/20 rounded-full blur-xl animate-pulse">
+                    </div>
+                    <div
+                        class="absolute top-40 right-32 w-24 h-24 bg-purple-500/20 rounded-full blur-xl animate-pulse delay-1000">
+                    </div>
+                    <div
+                        class="absolute bottom-32 left-1/3 w-40 h-40 bg-indigo-500/20 rounded-full blur-xl animate-pulse delay-2000">
+                    </div>
+                </div>
+
+                <!-- Content container -->
+                <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- Left content -->
+                        <div class="text-white space-y-8">
+                            <div class="space-y-4">
+                                <h1 class="text-3xl lg:text-6xl font-bold leading-tight">
+                                    <span class="text-[#F58F5D]">ENCO SHOP</span>
+                                </h1>
+                                <h2 class="text-lg lg:text-4xl font-semibold text-black">
+                                    Khi đến trẻ trâu - Khi về lịch lãm
+                                </h2>
+                            </div>
+
+                            <p class="text-base lg:text-xl text-white leading-relaxed max-w-lg">
+                                Khám phá bộ sưu tập thời trang đỉnh cao với những sản phẩm chất lượng,
+                                thiết kế hiện đại, phong cách và giá cả hợp lý nhất.
+                            </p>
+
+                            <!-- CTA Buttons -->
+                            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                                <a href="product.html"
+                                    class="inline-flex items-center justify-center px-6 py-3 text-base lg:px-8 lg:py-4 lg:text-lg bg-gradient-to-r from-[#55D5D2] to-blue-500 text-white font-semibold rounded-xl hover:from-[#55D5D2]/90 hover:to-blue-500/90 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                    <i class="fa-solid fa-shirt mr-2"></i>
+                                    Mua Ngay
+                                </a>
+                                <a href="introduce.html"
+                                    class="inline-flex items-center justify-center px-6 py-3 text-base lg:px-8 lg:py-4 lg:text-lg border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/50 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+                                    <i class="fa-solid fa-info-circle mr-2"></i>
+                                    Tìm Hiểu Thêm
+                                </a>
+                            </div>
+
+                            <!-- Features -->
+                            <div class="flex flex-wrap gap-6 pt-8">
+                                <div class="flex items-center gap-2 text-white">
+                                    <i class="fa-solid fa-check-circle text-green-400"></i>
+                                    <span class="text-sm">Giao hàng toàn quốc</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-white">
+                                    <i class="fa-solid fa-check-circle text-orange-400"></i>
+                                    <span class="text-sm">Đổi trả dễ dàng</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-white">
+                                    <i class="fa-solid fa-check-circle text-purple-400"></i>
+                                    <span class="text-sm">Thanh toán an toàn</span>
+                                </div>
+
+                                <div class="flex items-center gap-2 text-white">
+                                    <i class="fa-solid fa-check-circle text-red-500"></i>
+                                    <span class="text-sm">Là ENCO Shop</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right content - Product showcase -->
+                        <div class="relative hidden lg:block">
+                            <div class="relative">
+                                <!-- Main product image -->
+                                <div
+                                    class="relative z-20 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
+                                    <div class="text-center space-y-4">
+                                        <div
+                                            class="w-32 h-32 mx-auto bg-gradient-to-br from-[#55D5D2] to-blue-500 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-shirt text-white text-4xl"></i>
+                                        </div>
+                                        <h3 class="text-white font-semibold text-xl">Áo Sơ Mi Nam Cao Cấp</h3>
+                                        <p class="text-white text-sm">Thiết kế trẻ trung, lịch lãm</p>
+                                        <div class="text-[#55D5D2] font-bold text-2xl">499.000đ</div>
+                                    </div>
+                                </div>
+
+                                <!-- Floating elements -->
+                                <div
+                                    class="absolute -top-4 -right-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-lg">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <span class="text-white text-sm font-medium">4.9/5</span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="absolute -bottom-4 -left-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-lg">
+                                    <div class="text-center">
+                                        <div class="text-white font-bold text-lg">50%</div>
+                                        <div class="text-gray-300 text-xs">Giảm giá</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave separator -->
+            <div class="relative">
+                <svg class="w-full h-16 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path
+                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                        opacity=".25" fill="currentColor"></path>
+                    <path
+                        d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                        opacity=".5" fill="currentColor"></path>
+                    <path
+                        d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                        fill="currentColor"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Danh mục sản phẩm -->
+        <section class="py-8 bg-gradient-to-b from-[#e0f7f6] to-white rounded-3xl shadow-xl mx-2">
+            <div class="container mx-auto px-4">
+                <h2 class="text-xl lg:text-3xl font-bold text-center mb-8 lg:mb-10 text-[#222] flex items-center justify-center gap-3 uppercase">
+                    <i class="fa-solid fa-layer-group text-[#55D5D2] text-xl lg:text-2xl"></i>
+                    Danh mục sản phẩm
+                    <i class="fa-solid fa-layer-group text-[#55D5D2] text-xl lg:text-2xl"></i>
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-6 gap-4 lg:gap-8 max-w-5xl mx-auto">
+                    <!-- Quần -->
+                    <a href="product.html?category=quan"
+                        class="flex flex-col items-center bg-white rounded-2xl shadow-xl p-4 lg:p-8 hover:-translate-y-2 hover:shadow-2xl hover:bg-[#e0f7f6] transition-all duration-300 group">
+                        <div class="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-blue-100 mb-3 lg:mb-4">
+                            <i class="fa-solid fa-person-walking text-2xl lg:text-3xl text-blue-500 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-base lg:text-lg font-semibold text-[#222]">Quần</span>
+                    </a>
+                    <!-- Áo -->
+                    <a href="product.html?category=ao"
+                        class="flex flex-col items-center bg-white rounded-2xl shadow-xl p-4 lg:p-8 hover:-translate-y-2 hover:shadow-2xl hover:bg-[#e0f7f6] transition-all duration-300 group">
+                        <div class="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-green-100 mb-3 lg:mb-4">
+                            <i class="fa-solid fa-shirt text-2xl lg:text-3xl text-green-500 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-base lg:text-lg font-semibold text-[#222]">Áo</span>
+                    </a>
+                    <!-- Giày -->
+                    <a href="product.html?category=giay"
+                        class="flex flex-col items-center bg-white rounded-2xl shadow-xl p-4 lg:p-8 hover:-translate-y-2 hover:shadow-2xl hover:bg-[#e0f7f6] transition-all duration-300 group">
+                        <div class="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-yellow-100 mb-3 lg:mb-4">
+                            <i class="fa-solid fa-shoe-prints text-2xl lg:text-3xl text-yellow-500 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-base lg:text-lg font-semibold text-[#222]">Giày</span>
+                    </a>
+                    <!-- Dép -->
+                    <a href="product.html?category=dep"
+                        class="flex flex-col items-center bg-white rounded-2xl shadow-xl p-4 lg:p-8 hover:-translate-y-2 hover:shadow-2xl hover:bg-[#e0f7f6] transition-all duration-300 group">
+                        <div class="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-orange-100 mb-3 lg:mb-4">
+                            <i class="fa-solid fa-slippers text-2xl lg:text-3xl text-orange-500 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-base lg:text-lg font-semibold text-[#222]">Dép</span>
+                    </a>
+                    <!-- Váy -->
+                    <a href="product.html?category=vay"
+                        class="flex flex-col items-center bg-white rounded-2xl shadow-xl p-4 lg:p-8 hover:-translate-y-2 hover:shadow-2xl hover:bg-[#e0f7f6] transition-all duration-300 group">
+                        <div class="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-pink-200 mb-3 lg:mb-4">
+                            <i class="fa-solid fa-person-dress text-2xl lg:text-3xl text-pink-500 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-base lg:text-lg font-semibold text-[#222]">Váy</span>
+                    </a>
+                    <!-- Phụ kiện -->
+                    <a href="product.html?category=phu-kien"
+                        class="flex flex-col items-center bg-white rounded-2xl shadow-xl p-4 lg:p-8 hover:-translate-y-2 hover:shadow-2xl hover:bg-[#e0f7f6] transition-all duration-300 group">
+                        <div class="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-purple-100 mb-3 lg:mb-4">
+                            <i class="fa-solid fa-hat-cowboy text-2xl lg:text-3xl text-purple-500 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-base lg:text-lg font-semibold text-[#222]">Phụ kiện</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sản phẩm mới (carousel thuần JS) -->
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between mb-10">
+                    <h2 class="text-3xl font-bold text-[#222] uppercase flex items-center gap-3">
+                        <i class="fa-solid fa-star text-[#F58F5D] text-2xl"></i>
+                        Sản phẩm mới
+                    </h2>
+                    <a href="product.html?category=sp-moi" class="px-6 py-2 bg-[#55D5D2] text-white rounded-lg font-medium shadow hover:bg-[#F58F5D] transition-all duration-300 flex items-center gap-2 uppercase group">
+                        Xem thêm
+                        <i class="fas fa-arrow-up ml-2 transform rotate-45 transition-transform duration-300 text-white group-hover:rotate-90"></i>
+                    </a>
+                </div>
+                <div class="relative">
+                    <button id="prevProduct"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#F58F5D] text-white rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-[#ffb48a] transition"><i
+                            class="fa-solid fa-chevron-left"></i></button>
+                    <div id="productCarousel" class="overflow-hidden">
+                        <div id="productTrack" class="flex transition-transform duration-500 gap-8">
+                            <!-- Sản phẩm 1 -->
+                            <div
+                                class="min-w-[250px] max-w-[250px] bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center">
+                                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=facearea&w=300&q=80"
+                                    alt="Áo thun basic" class="w-32 h-32 object-cover rounded-xl mb-4">
+                                <h3 class="font-semibold text-lg mb-2">Áo thun basic</h3>
+                                <div class="text-[#55D5D2] font-bold text-xl mb-2">199.000đ</div>
+                                <a href="#"
+                                    class="mt-auto px-4 py-2 bg-[#F58F5D] text-white rounded-lg font-medium hover:bg-[#ffb48a] transition">Xem
+                                    chi tiết</a>
+                            </div>
+                            <!-- Sản phẩm 2 -->
+                            <div
+                                class="min-w-[250px] max-w-[250px] bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=300&q=80"
+                                    alt="Quần jeans" class="w-32 h-32 object-cover rounded-xl mb-4">
+                                <h3 class="font-semibold text-lg mb-2">Quần jeans nam</h3>
+                                <div class="text-[#55D5D2] font-bold text-xl mb-2">399.000đ</div>
+                                <a href="#"
+                                    class="mt-auto px-4 py-2 bg-[#F58F5D] text-white rounded-lg font-medium hover:bg-[#ffb48a] transition">Xem
+                                    chi tiết</a>
+                            </div>
+                            <!-- Sản phẩm 3 -->
+                            <div
+                                class="min-w-[250px] max-w-[250px] bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center">
+                                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=300&q=80"
+                                    alt="Váy nữ" class="w-32 h-32 object-cover rounded-xl mb-4">
+                                <h3 class="font-semibold text-lg mb-2">Váy nữ xếp ly</h3>
+                                <div class="text-[#55D5D2] font-bold text-xl mb-2">299.000đ</div>
+                                <a href="#"
+                                    class="mt-auto px-4 py-2 bg-[#F58F5D] text-white rounded-lg font-medium hover:bg-[#ffb48a] transition">Xem
+                                    chi tiết</a>
+                            </div>
+                            <!-- Sản phẩm 4 -->
+                            <div
+                                class="min-w-[250px] max-w-[250px] bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center">
+                                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=300&q=80"
+                                    alt="Giày sneaker" class="w-32 h-32 object-cover rounded-xl mb-4">
+                                <h3 class="font-semibold text-lg mb-2">Giày sneaker</h3>
+                                <div class="text-[#55D5D2] font-bold text-xl mb-2">499.000đ</div>
+                                <a href="#"
+                                    class="mt-auto px-4 py-2 bg-[#F58F5D] text-white rounded-lg font-medium hover:bg-[#ffb48a] transition">Xem
+                                    chi tiết</a>
+                            </div>
+                            <!-- Sản phẩm 5 -->
+                            <div
+                                class="min-w-[250px] max-w-[250px] bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center">
+                                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=facearea&w=300&q=80"
+                                    alt="Áo sơ mi caro" class="w-32 h-32 object-cover rounded-xl mb-4">
+                                <h3 class="font-semibold text-lg mb-2">Áo sơ mi caro</h3>
+                                <div class="text-[#55D5D2] font-bold text-xl mb-2">259.000đ</div>
+                                <a href="#"
+                                    class="mt-auto px-4 py-2 bg-[#F58F5D] text-white rounded-lg font-medium hover:bg-[#ffb48a] transition">Xem
+                                    chi tiết</a>
+                            </div>
+
+                             <!-- Sản phẩm 5 -->
+                             <div
+                             class="min-w-[250px] max-w-[250px] bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center">
+                             <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=facearea&w=300&q=80"
+                                 alt="Áo sơ mi caro" class="w-32 h-32 object-cover rounded-xl mb-4">
+                             <h3 class="font-semibold text-lg mb-2">Áo sơ mi caro</h3>
+                             <div class="text-[#55D5D2] font-bold text-xl mb-2">259.000đ</div>
+                             <a href="#"
+                                 class="mt-auto px-4 py-2 bg-[#F58F5D] text-white rounded-lg font-medium hover:bg-[#ffb48a] transition">Xem
+                                 chi tiết</a>
+                         </div>
+                        </div>
+                    </div>
+                    <button id="nextProduct"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#F58F5D] text-white rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-[#ffb48a] transition"><i
+                            class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchToggle = document.getElementById('searchToggle');
+            const searchModal = document.getElementById('searchModal');
+            const searchContainer = document.getElementById('searchContainer');
+            const closeSearch = document.getElementById('closeSearch');
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.querySelectorAll('#searchSuggestions span');
+            const hotSearchItems = document.querySelectorAll('#hotSearch .flex');
+
+            // Open search modal
+            searchToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                openSearchModal();
+            });
+
+            // Close search modal
+            closeSearch.addEventListener('click', function () {
+                closeSearchModal();
+            });
+
+            // Close modal when clicking outside
+            searchModal.addEventListener('click', function (e) {
+                if (e.target === searchModal) {
+                    closeSearchModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+                    closeSearchModal();
+                }
+            });
+
+            // Handle search suggestions
+            searchSuggestions.forEach(suggestion => {
+                suggestion.addEventListener('click', function () {
+                    searchInput.value = this.textContent;
+                    searchInput.focus();
+                });
+            });
+
+            // Handle hot search items
+            hotSearchItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const searchText = this.querySelector('span:last-child').textContent;
+                    searchInput.value = searchText;
+                    searchInput.focus();
+                });
+            });
+
+            // Handle form submission
+            document.getElementById('searchForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    console.log('Searching for:', searchTerm);
+                    // Add your search logic here
+                    closeSearchModal();
+                }
+            });
+
+            function openSearchModal() {
+                searchModal.classList.remove('hidden');
+                // Trigger animation after a small delay
+                setTimeout(() => {
+                    searchContainer.classList.remove('scale-95', 'opacity-0');
+                    searchContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                // Focus on input after animation
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+            }
+
+            function closeSearchModal() {
+                searchContainer.classList.remove('scale-100', 'opacity-100');
+                searchContainer.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    searchModal.classList.add('hidden');
+                    searchInput.value = '';
+                }, 300);
+            }
+        });
+
+        // Header hide/show on scroll (tối ưu, không delay, không điều kiện)
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.querySelector('header');
+            let lastScrollY = window.scrollY;
+            header.classList.add('transition-transform', 'duration-500', 'ease-in-out');
+            header.style.transform = 'translateX(-50%) translateY(0)';
+
+            window.addEventListener('scroll', function () {
+                const currentScrollY = window.scrollY;
+                if (currentScrollY > lastScrollY) {
+                    // Lăn xuống, ẩn header
+                    header.style.transform = 'translateX(-50%) translateY(-150%)';
+                } else if (currentScrollY < lastScrollY) {
+                    // Lăn lên, hiện header
+                    header.style.transform = 'translateX(-50%) translateY(0)';
+                }
+                lastScrollY = currentScrollY;
+            });
+        });
+
+        // Mobile nav toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const closeMobileNav = document.getElementById('closeMobileNav');
+
+        mobileMenuBtn && mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('-translate-x-full');
+            mobileNavOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        closeMobileNav && closeMobileNav.addEventListener('click', () => {
+            mobileNav.classList.add('-translate-x-full');
+            mobileNavOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        mobileNavOverlay && mobileNavOverlay.addEventListener('click', () => {
+            mobileNav.classList.add('-translate-x-full');
+            mobileNavOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Mobile search modal trigger
+        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+        const searchModal = document.getElementById('searchModal');
+        const searchContainer = document.getElementById('searchContainer');
+        const searchInput = document.getElementById('searchInput');
+        mobileSearchBtn && mobileSearchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Đóng nav mobile nếu đang mở
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            if (mobileNav) mobileNav.classList.add('-translate-x-full');
+            if (mobileNavOverlay) mobileNavOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+            // Mở Search Modal trực tiếp
+            if (searchModal && searchContainer && searchInput) {
+                searchModal.classList.remove('hidden');
+                setTimeout(() => {
+                    searchContainer.classList.remove('scale-95', 'opacity-0');
+                    searchContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+            }
+        });
+    </script>
+
+    <!-- SwiperJS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const track = document.getElementById('productTrack');
+            const prevBtn = document.getElementById('prevProduct');
+            const nextBtn = document.getElementById('nextProduct');
+            const slideCount = track.children.length;
+            const visibleSlides = 4;
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                const slideWidth = track.children[0].offsetWidth + 32; // 32 là gap-8
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
+
+            nextBtn.addEventListener('click', function () {
+                if (currentIndex + visibleSlides < slideCount) {
+                    currentIndex += visibleSlides;
+                    if (currentIndex + visibleSlides > slideCount) {
+                        currentIndex = slideCount - visibleSlides;
+                    }
+                } else {
+                    currentIndex = 0;
+                }
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener('click', function () {
+                if (currentIndex - visibleSlides >= 0) {
+                    currentIndex -= visibleSlides;
+                } else {
+                    currentIndex = Math.max(0, slideCount - visibleSlides);
+                }
+                updateCarousel();
+            });
+
+            window.addEventListener('resize', updateCarousel);
+            updateCarousel();
+        });
+    </script>
 </body>
+
 </html>
