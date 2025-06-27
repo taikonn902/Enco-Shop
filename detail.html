@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - ENCO Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        .active-thumb {
+            border-color: #2ecfc9 !important;
+            box-shadow: 0 0 0 2px #2ecfc933;
+        }
+
+        .color-dot.selected {
+            position: relative;
+        }
+
+        .color-dot.selected i {
+            color: #2ecfc9;
+            font-size: 1rem;
+            pointer-events: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 1023px) {
+            .sticky-product {
+                position: static !important;
+            }
+            .add-to-cart-desktop { display: none !important; }
+            .add-to-cart-mobile { display: block !important; }
+            .add-to-cart-qty-mobile { display: flex !important; }
+            .add-to-cart-mobile .add-to-cart-qty-mobile { min-width: 0; }
+            .add-to-cart-mobile button { min-width: 0; }
+        }
+        @media (min-width: 1024px) {
+            .add-to-cart-mobile { display: none !important; }
+        }
+
+        @media (max-width: 767px) {
+            nav.text-sm {
+                font-size: 11px !important;
+                padding-left: 4px;
+                padding-right: 4px;
+                margin-bottom: 0.5rem;
+                gap: 2px !important;
+                flex-wrap: wrap;
+            }
+            nav.text-sm a,
+            nav.text-sm span {
+                font-size: 11px !important;
+                line-height: 1.2;
+                word-break: break-word;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-[#e0f7f6] to-white min-h-screen">
+    <!-- Slogan
+    <div class="flex justify-end w-[95%] mx-auto">
+        <p class="text-white text-sm font-medium italic bg-gradient-to-r from-[#55D5D2] to-blue-500 bg-clip-text text-transparent drop-shadow-lg py-0.5" style="text-shadow: 0 0 10px rgba(0, 0, 0, 1), 0 0 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6), 2px 2px 4px rgba(0, 0, 0, 0.9);">
+            Khi đến trẻ trâu - khi về lịch lãm
+        </p>
+    </div> -->
+
+    <header
+        class="fixed left-1/2 top-0 z-30 flex justify-center items-center py-2 mx-auto w-full lg:w-[90%] rounded-none lg:rounded-[35px]"
+        style="left: 50%; background-color: rgba(0, 0, 0, 0.5); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); backdrop-filter: blur(7.5px); transform: translateX(-50%) translateY(0);">
+        <div class="flex justify-between items-center w-[95%]">
+            <!-- Mobile: Menu Button & Search Icon -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <button id="mobileMenuBtn"
+                    class="flex items-center justify-center w-10 h-10 text-white rounded-lg hover:bg-[#F58F5D] transition-all">
+                    <i class="fa-solid fa-bars text-2xl text-white"></i>
+                </button>
+                <button id="mobileSearchBtn"
+                    class="flex items-center justify-center w-10 h-10 text-white rounded-lg hover:bg-[#F58F5D] transition-all">
+                    <i class="fa-solid fa-magnifying-glass text-xl text-white"></i>
+                </button>
+            </div>
+            <!-- Logo - center on mobile, left on desktop -->
+            <div class="flex-1 flex justify-center lg:justify-start">
+                <a href="index.html" class="flex items-center w-12 h-12">
+                    <img src="img/logo.png" alt="logo">
+                </a>
+            </div>
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex w-[60%] justify-center items-center">
+                <ul class="flex justify-center items-center gap-6">
+                    <li><a href="index.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Trang Chủ
+                        </a></li>
+                    <li><a href="introduce.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Giới Thiệu
+                        </a></li>
+                    <li><a href="product.html" style="--line-bottom:-6px"
+                            class="relative px-4 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Sản Phẩm
+                        </a></li>
+                    <li><a href="blog.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Blog
+                        </a></li>
+                    <li><a href="contact.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Liên Hệ
+                        </a></li>
+                    <li><a href="order.html" style="--line-bottom:-6px"
+                            class="relative px-2 py-2 text-white hover:text-[#2ecfc9] transition-all duration-300 font-medium text-lg after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-0 after:bg-[#2ecfc9] after:rounded-full after:transition-all after:duration-300 hover:after:h-1">
+                            Đơn Hàng
+                        </a></li>
+                </ul>
+            </nav>
+            <!-- Mobile: User & Cart -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <a href="login.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                    <i class="text-white fa-regular fa-user text-lg"></i>
+                </a>
+                <a href="cart.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D] relative">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.47381rem" height="1.44581rem" viewBox="0 0 24 24"
+                        fill="none">
+                        <path
+                            d="M15.9218 5.78316C15.7027 5.78316 15.4926 5.69612 15.3376 5.54118C15.1827 5.38624 15.0956 5.1761 15.0956 4.95699C15.0956 4.08054 14.7475 3.23999 14.1277 2.62024C13.508 2.0005 12.6674 1.65233 11.791 1.65233C10.9145 1.65233 10.074 2.0005 9.45423 2.62024C8.83448 3.23999 8.48631 4.08054 8.48631 4.95699C8.48631 5.1761 8.39927 5.38624 8.24434 5.54118C8.0894 5.69612 7.87926 5.78316 7.66015 5.78316C7.44104 5.78316 7.2309 5.69612 7.07596 5.54118C6.92103 5.38624 6.83398 5.1761 6.83398 4.95699C6.83398 3.64232 7.35624 2.38149 8.28585 1.45187C9.21547 0.522253 10.4763 0 11.791 0C13.1057 0 14.3665 0.522253 15.2961 1.45187C16.2257 2.38149 16.748 3.64232 16.748 4.95699C16.748 5.1761 16.6609 5.38624 16.506 5.54118C16.3511 5.69612 16.1409 5.78316 15.9218 5.78316Z"
+                            fill="white"></path>
+                        <path
+                            d="M17.6561 23.1327H5.92459C5.05912 23.1325 4.22083 22.8304 3.55423 22.2784C2.88763 21.7264 2.43449 20.9592 2.27294 20.1089L0.0670791 8.54259C-0.0365575 8.00506 -0.0199343 7.45124 0.115756 6.92089C0.251446 6.39054 0.50284 5.89679 0.8519 5.47508C1.20096 5.05336 1.63903 4.71413 2.13469 4.48173C2.63034 4.24932 3.1713 4.12951 3.71873 4.13087H19.862C20.4094 4.12951 20.9504 4.24932 21.446 4.48173C21.9417 4.71413 22.3798 5.05336 22.7288 5.47508C23.0779 5.89679 23.3293 6.39054 23.465 6.92089C23.6007 7.45124 23.6173 8.00506 23.5137 8.54259L21.3078 20.1089C21.1462 20.9592 20.6931 21.7264 20.0265 22.2784C19.3599 22.8304 18.5216 23.1325 17.6561 23.1327ZM1.68636 8.2617L3.89222 19.828C3.98918 20.2952 4.24428 20.7147 4.61451 21.0157C4.98474 21.3167 5.44744 21.4808 5.92459 21.4803H17.6561C18.1333 21.4808 18.596 21.3167 18.9662 21.0157C19.3365 20.7147 19.5916 20.2952 19.6885 19.828L21.8944 8.2617C21.9542 7.96107 21.9467 7.65091 21.8723 7.35355C21.7979 7.05619 21.6585 6.77903 21.4641 6.542C21.2697 6.30497 21.0252 6.11398 20.7482 5.98278C20.4712 5.85157 20.1685 5.78341 19.862 5.7832H3.71873C3.4122 5.78341 3.10954 5.85157 2.83251 5.98278C2.55549 6.11398 2.311 6.30497 2.11663 6.542C1.92227 6.77903 1.78287 7.05619 1.70848 7.35355C1.63408 7.65091 1.62652 7.96107 1.68636 8.2617Z"
+                            fill="white"></path>
+                        <path
+                            d="M15.9218 9.91405H7.66015C7.44104 9.91405 7.2309 9.82701 7.07596 9.67207C6.92103 9.51713 6.83398 9.307 6.83398 9.08788C6.83398 8.86877 6.92103 8.65863 7.07596 8.5037C7.2309 8.34876 7.44104 8.26172 7.66015 8.26172H15.9218C16.1409 8.26172 16.3511 8.34876 16.506 8.5037C16.6609 8.65863 16.748 8.86877 16.748 9.08788C16.748 9.307 16.6609 9.51713 16.506 9.67207C16.3511 9.82701 16.1409 9.91405 15.9218 9.91405Z"
+                            fill="white"></path>
+                    </svg>
+
+                    <span
+                        class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-1.5 py-0.5 hover:bg-red-600 transition-colors duration-300">0</span>
+                </a>
+            </div>
+            <!-- Icons desktop -->
+            <div class="hidden lg:flex w-[20%] items-center justify-end gap-3">
+                <div class="relative">
+                    <button id="searchToggle"
+                        class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                        <i class="text-white fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                </div>
+                <a href="login.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                    <i class="text-white fa-regular fa-user text-lg"></i>
+                </a>
+                <a href="wishlist.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D]">
+                    <i class="text-white fa-regular fa-heart text-lg"></i>
+                </a>
+                <a href="cart.html"
+                    class="w-10 h-10 flex items-center justify-center text-white rounded-lg transition-all duration-300 hover:bg-[#F58F5D] focus:bg-[#F58F5D] relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.47381rem" height="1.44581rem" viewBox="0 0 24 24"
+                        fill="none">
+                        <path
+                            d="M15.9218 5.78316C15.7027 5.78316 15.4926 5.69612 15.3376 5.54118C15.1827 5.38624 15.0956 5.1761 15.0956 4.95699C15.0956 4.08054 14.7475 3.23999 14.1277 2.62024C13.508 2.0005 12.6674 1.65233 11.791 1.65233C10.9145 1.65233 10.074 2.0005 9.45423 2.62024C8.83448 3.23999 8.48631 4.08054 8.48631 4.95699C8.48631 5.1761 8.39927 5.38624 8.24434 5.54118C8.0894 5.69612 7.87926 5.78316 7.66015 5.78316C7.44104 5.78316 7.2309 5.69612 7.07596 5.54118C6.92103 5.38624 6.83398 5.1761 6.83398 4.95699C6.83398 3.64232 7.35624 2.38149 8.28585 1.45187C9.21547 0.522253 10.4763 0 11.791 0C13.1057 0 14.3665 0.522253 15.2961 1.45187C16.2257 2.38149 16.748 3.64232 16.748 4.95699C16.748 5.1761 16.6609 5.38624 16.506 5.54118C16.3511 5.69612 16.1409 5.78316 15.9218 5.78316Z"
+                            fill="white"></path>
+                        <path
+                            d="M17.6561 23.1327H5.92459C5.05912 23.1325 4.22083 22.8304 3.55423 22.2784C2.88763 21.7264 2.43449 20.9592 2.27294 20.1089L0.0670791 8.54259C-0.0365575 8.00506 -0.0199343 7.45124 0.115756 6.92089C0.251446 6.39054 0.50284 5.89679 0.8519 5.47508C1.20096 5.05336 1.63903 4.71413 2.13469 4.48173C2.63034 4.24932 3.1713 4.12951 3.71873 4.13087H19.862C20.4094 4.12951 20.9504 4.24932 21.446 4.48173C21.9417 4.71413 22.3798 5.05336 22.7288 5.47508C23.0779 5.89679 23.3293 6.39054 23.465 6.92089C23.6007 7.45124 23.6173 8.00506 23.5137 8.54259L21.3078 20.1089C21.1462 20.9592 20.6931 21.7264 20.0265 22.2784C19.3599 22.8304 18.5216 23.1325 17.6561 23.1327ZM1.68636 8.2617L3.89222 19.828C3.98918 20.2952 4.24428 20.7147 4.61451 21.0157C4.98474 21.3167 5.44744 21.4808 5.92459 21.4803H17.6561C18.1333 21.4808 18.596 21.3167 18.9662 21.0157C19.3365 20.7147 19.5916 20.2952 19.6885 19.828L21.8944 8.2617C21.9542 7.96107 21.9467 7.65091 21.8723 7.35355C21.7979 7.05619 21.6585 6.77903 21.4641 6.542C21.2697 6.30497 21.0252 6.11398 20.7482 5.98278C20.4712 5.85157 20.1685 5.78341 19.862 5.7832H3.71873C3.4122 5.78341 3.10954 5.85157 2.83251 5.98278C2.55549 6.11398 2.311 6.30497 2.11663 6.542C1.92227 6.77903 1.78287 7.05619 1.70848 7.35355C1.63408 7.65091 1.62652 7.96107 1.68636 8.2617Z"
+                            fill="white"></path>
+                        <path
+                            d="M15.9218 9.91405H7.66015C7.44104 9.91405 7.2309 9.82701 7.07596 9.67207C6.92103 9.51713 6.83398 9.307 6.83398 9.08788C6.83398 8.86877 6.92103 8.65863 7.07596 8.5037C7.2309 8.34876 7.44104 8.26172 7.66015 8.26172H15.9218C16.1409 8.26172 16.3511 8.34876 16.506 8.5037C16.6609 8.65863 16.748 8.86877 16.748 9.08788C16.748 9.307 16.6609 9.51713 16.506 9.67207C16.3511 9.82701 16.1409 9.91405 15.9218 9.91405Z"
+                            fill="white"></path>
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-1.5 py-0.5 hover:bg-red-600 transition-colors duration-300">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay & Nav (ngoài header) -->
+    <div id="mobileNavOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden lg:hidden"></div>
+    <div id="mobileNav"
+        class="fixed top-0 left-0 h-full w-full bg-white z-50 flex flex-col pt-8 px-6 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden rounded-none">
+        <div class="absolute top-4 right-4">
+            <button id="closeMobileNav" class="text-black text-3xl p-2 hover:bg-gray-200 rounded-full transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <ul class="flex flex-col gap-6 items-start mt-8">
+            <li><a href="index.html"
+                    class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Trang Chủ</a></li>
+            <li><a href="introduce.html"
+                    class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Giới Thiệu</a></li>
+            <li><a href="product.html"
+                    class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Sản Phẩm</a></li>
+            <li><a href="blog.html"
+                    class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Blog</a></li>
+            <li><a href="contact.html"
+                    class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Liên Hệ</a></li>
+            <li><a href="order.html"
+                    class="text-black text-lg font-medium uppercase hover:text-[#2ecfc9] transition">Đơn Hàng</a></li>
+        </ul>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden z-50">
+        <div class="flex items-start justify-start min-h-screen p-4 mt-0 lg:items-center lg:justify-center lg:p-0">
+            <div id="searchContainer"
+                class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform transition-all duration-500 scale-95 opacity-0">
+                <!-- Search Header -->
+                <div
+                    class="flex items-center justify-between p-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-blue-50 rounded-t-2xl">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Tìm kiếm sản phẩm thời trang</h3>
+                            <p class="text-xs text-gray-500">Khám phá bộ sưu tập quần áo, phụ kiện mới nhất</p>
+                        </div>
+                    </div>
+                    <button id="closeSearch"
+                        class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all duration-300 group">
+                        <i
+                            class="fa-solid fa-times text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    </button>
+                </div>
+
+                <!-- Search Input -->
+                <div class="p-4">
+                    <form id="searchForm" action="#" class="relative">
+                        <div class="relative">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-xl blur-lg opacity-30 animate-pulse">
+                            </div>
+                            <div
+                                class="relative bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20 overflow-hidden">
+                                <div class="flex items-center px-2 py-2">
+                                    <div class="flex-shrink-0 mr-2 pl-1.5">
+                                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-lg"></i>
+                                    </div>
+                                    <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm..."
+                                        class="flex-1 bg-transparent border-none outline-none text-base text-gray-800 placeholder-gray-400 focus:placeholder-gray-300 transition-all duration-300 font-medium py-1 px-1">
+                                    <div class="flex-shrink-0 ml-2">
+                                        <button type="submit"
+                                            class="flex items-center justify-center w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow transition-all duration-300">
+                                            <i class="fa-solid fa-magnifying-glass text-base text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Search Suggestions -->
+                    <div id="searchSuggestions" class="mt-6">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-yellow-500"></i>
+                            Gợi ý tìm kiếm
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-black rounded-lg text-sm font-medium cursor-pointer hover:from-blue-100 hover:to-indigo-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-blue-100">
+                                <i class="fa-solid fa-shirt mr-1"></i>Áo thun
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-green-50 to-emerald-50 text-black rounded-lg text-sm font-medium cursor-pointer hover:from-green-100 hover:to-emerald-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-green-100">
+                                <i class="fa-solid fa-user-tie mr-1"></i>Áo sơ mi
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-purple-50 to-pink-50 text-black rounded-lg text-sm font-medium cursor-pointer hover:from-purple-100 hover:to-pink-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-purple-100">
+                                <i class="fa-solid fa-person-dress mr-1"></i>Váy nữ
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-orange-50 to-red-50 text-orange-700 rounded-lg text-sm font-medium cursor-pointer hover:from-orange-100 hover:to-red-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-orange-100">
+                                <i class="fa-solid fa-shoe-prints mr-1"></i>Giày sneaker
+                            </span>
+                            <span
+                                class="px-3 py-2 bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-700 rounded-lg text-sm font-medium cursor-pointer hover:from-teal-100 hover:to-cyan-100 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md border border-teal-100">
+                                <i class="fa-solid fa-hat-cowboy mr-1"></i>Phụ kiện
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Hot Search -->
+                    <div id="hotSearch" class="mt-6">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-red-500"></i>
+                            Tìm kiếm phổ biến
+                        </h4>
+                        <div class="space-y-3">
+                            <div
+                                class="flex items-center justify-between p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg cursor-pointer hover:from-red-100 hover:to-pink-100 hover:scale-102 scale-80 transition-all duration-300 shadow-sm hover:shadow-md border border-red-100">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                                        1</div>
+                                    <span class="text-black font-medium text-sm">Áo thun local brand</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-red-500 font-medium">HOT</span>
+                                    <i class="fa-solid fa-fire text-red-500 text-sm"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-3 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg cursor-pointer hover:from-orange-100 hover:to-yellow-100 hover:scale-102 scale-80 transition-all duration-300 shadow-sm hover:shadow-md border border-orange-100">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                                        2</div>
+                                    <span class="text-gray-800 font-medium text-sm">Quần jeans rách gối</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-orange-500 font-medium">TRENDING</span>
+                                    <i class="fa-solid fa-fire text-orange-500 text-sm"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg cursor-pointer hover:from-blue-100 hover:to-indigo-100 hover:scale-102 scale-80 transition-all duration-300 shadow-sm hover:shadow-md border border-blue-100">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                                        3</div>
+                                    <span class="text-black font-medium text-sm">Váy maxi nữ</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-blue-500 font-medium">POPULAR</span>
+                                    <i class="fa-solid fa-fire text-blue-500 text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="container mx-auto px-4 mt-4 pt-20">
+        <nav class="text-sm text-gray-500 flex items-center gap-2">
+            <a href="index.html" class="hover:text-[#2ecfc9]">Trang chủ</a>
+            <span>/</span>
+            <a href="product.html" class="hover:text-[#2ecfc9]">Sản phẩm</a>
+            <span>/</span>
+            <span class="text-[#F58F5D] font-semibold">SWE HOODSTACK ZIP JACKET - BLACK</span>
+        </nav>
+    </div>
+
+    <!-- Chi tiết sản phẩm -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            <!-- Ảnh sản phẩm -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center relative">
+                <!-- Nút yêu thích -->
+                <button
+                    class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full p-2 shadow hover:bg-[#F58F5D] bg-[#2ecfc9] group transition-all"
+                    title="Yêu thích">
+                    <i class="fa-regular fa-heart text-[#F58F5D] text-xl text-white"></i>
+                </button>
+                <img src="img/aokhoac1.webp" alt="SWE HOODSTACK ZIP JACKET - BLACK"
+                    class="main-product-img w-full max-w-sm rounded-2xl object-contain mb-4 cursor-zoom-in">
+                <div class="flex gap-2 mt-2">
+                    <img src="img/aokhoac1.webp"
+                        class="product-thumb w-16 h-16 rounded-xl border-2 object-cover cursor-pointer active-thumb"
+                        alt="thumb1">
+                    <img src="img/aokhoac2.webp"
+                        class="product-thumb w-16 h-16 rounded-xl border-2 object-cover cursor-pointer" alt="thumb2">
+                </div>
+            </div>
+            <!-- Thông tin sản phẩm -->
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-[#222] mb-3">SWE HOODSTACK ZIP JACKET - BLACK</h1>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#F58F5D] text-2xl font-bold">390.000đ</span>
+                    <span class="text-gray-400 line-through text-base">590.000đ</span>
+                    <span class="bg-[#2ecfc9] text-white text-xs font-semibold px-2 py-1 rounded-full">-34%</span>
+                </div>
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <span class="font-medium text-gray-700">4.9/5 (120 đánh giá)</span>
+                </div>
+                <div class="flex items-center gap-4 mt-4">
+                    <button
+                        class="color-dot w-7 h-7 rounded-full border-2 border-gray-300 focus:outline-none flex items-center justify-center"
+                        style="background: #000;" data-color="Đen" aria-label="Đen"></button>
+                    <button
+                        class="color-dot w-7 h-7 rounded-full border-2 border-gray-300 focus:outline-none flex items-center justify-center"
+                        style="background: #bfa16a;" data-color="Nâu" aria-label="Nâu"></button>
+                    <span id="selectedColor" class="ml-2 text-[#2ecfc9] font-semibold">Đen</span>
+                </div>
+                <!-- Nút Thêm Vào Giỏ cho mobile -->
+                <div class="add-to-cart-mobile mt-5 mb-5 block lg:hidden">
+                    <div class="flex flex-row gap-2 w-full">
+                        <!-- Quantity Selector Mobile -->
+                        <div class="flex items-center justify-between bg-white rounded-full border border-[#2ecfc9] py-1 shadow-sm text-center add-to-cart-qty-mobile w-[40%]">
+                            <button id="decreaseQtyMobile"
+                                class="text-[#2ecfc9] text-xl font-bold focus:outline-none pl-5 disabled:text-gray-300 disabled:cursor-not-allowed"
+                                disabled>-</button>
+                            <span class="w-px h-6 bg-gray-200"></span>
+                            <span id="quantityMobile"
+                                class="text-[#2ecfc9] text-base font-bold text-center select-none px-2 w-8">1</span>
+                            <span class="w-px h-6 bg-gray-200"></span>
+                            <button id="increaseQtyMobile"
+                                class="text-[#2ecfc9] text-xl font-bold focus:outline-none pr-5">+</button>
+                        </div>
+                        <button
+                            class="bg-[#2ecfc9] hover:bg-[#F58F5D] text-[13px] text-white font-bold rounded-full px-3 py-2 flex items-center justify-center gap-2 transition-all w-[60%] min-h-[40px]">
+                            Thêm Vào Giỏ
+                            <span class="mx-2">
+                                <i class="fa-solid fa-circle text-[7px] align-middle" style="color: rgb(202, 242, 241);"></i>
+                            </span>
+                            <span id="totalPriceMobile" class="text-white">390.000đ</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="font-bold text-lg mb-2">Mô tả</h3>
+                    <div class="text-gray-700 text-[15px] leading-relaxed whitespace-pre-line">
+                        | SWE® | HOODSTACK ZIP JACKET
+                        COLOR: BLACK
+                        MATERIAL: COTTON 100%
+                        SIZE: S/M/L/XL
+
+                        HOODSTACK ZIP JACKET - Chiếc áo khoác mới nằm trong bộ sưu tập "THE FUTURE IS BRIGHT" được thiết
+                        kế đặc biệt khi phần nón phối vải caro có thể tháo rời. Điểm nhấn của áo nằm ở những đường may
+                        phối rã kèm hoạ tiết thêu ở nón, mặt trước và tay áo. Mặt sau nổi bật hơn với hoạ tiết typo được
+                        in lụa phồng. Phần cổ áo được thiết kế nút bấm giúp bạn duy trì form dáng đẹp.
+
+                        Áo khoác SWE được sử dụng vải nỉ chân cua, định lượng 440gsm, thiết kế form BOXY nên chất lượng
+                        các bạn có thể hoàn toàn yên tâm với sản phẩm nhà SWE.
+
+                        Form áo được Fit size theo form và tiêu chuẩn tương đối của người Việt Nam, nếu bạn đang cân
+                        nhắc giữa hai size, nên chọn size lớn hơn.
+                        Size S: Chiều cao dưới 1m65, cân nặng dưới 65kg
+                        Size M: Chiều cao từ 1m65 - 1m75, cân nặng dưới 75kg
+                        Size L: Chiều cao từ 1m75 - 1m85, cân nặng dưới 85kg
+                        Size XL: Chiều cao từ 1m85 trở lên, cân nặng dưới 120kg
+
+                        Các bạn vui lòng tham khảo bảng size chart trước khi đặt hàng.
+                        * Lưu ý: Hạn chế sử dụng máy sấy nhiệt cao để giữ form áo.
+                        NOW AVAILABLE ONLINE & IN - STORE
+                    </div>
+                </div>
+                <div
+                    class="flex justify-between items-center bg-[#cdf5f6] rounded-full p-4 gap-6 w-full max-w-2xl mx-auto mt-8 add-to-cart-desktop">
+                    <!-- Quantity Selector -->
+                    <div
+                        class="flex items-center bg-white rounded-full border border-[#2ecfc9] py-2 shadow-sm text-center">
+                        <button id="decreaseQty"
+                            class="text-[#2ecfc9] text-2xl font-bold focus:outline-none pl-6 pr-6 disabled:text-gray-300 disabled:cursor-not-allowed"
+                            disabled>-</button>
+                        <span class="w-px h-6 bg-gray-200"></span>
+                        <span id="quantity"
+                            class="text-[#2ecfc9] text-lg font-bold text-center select-none pl-5 pr-5 w-16">1</span>
+                        <span class="w-px h-6 bg-gray-200"></span>
+                        <button id="increaseQty"
+                            class="text-[#2ecfc9] text-2xl font-bold focus:outline-none pl-6 pr-6">+</button>
+                    </div>
+                    <!-- Add to Cart Button -->
+                    <button
+                        class="bg-[#2ecfc9] hover:bg-[#F58F5D] text-[14px] text-white font-bold rounded-full px-5 py-3 flex items-center justify-center gap-2 transition-all">
+                        Thêm Vào Giỏ
+                        <span class="mx-2">
+                            <i class="fa-solid fa-circle text-[7px] align-middle"
+                                style="color: rgb(202, 242, 241);"></i>
+                        </span>
+                        <span id="totalPrice" class="text-white">390.000đ</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sản phẩm liên quan -->
+    <section class="container mx-auto px-4 pb-12">
+        <h2 class="text-xl font-bold text-[#222] mb-6 mt-10 flex items-center gap-2"><i
+                class="fa-solid fa-link text-[#2ecfc9]"></i> Sản phẩm liên quan</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <a href="#"
+                class="rounded-2xl shadow-lg flex flex-col items-center bg-white p-4 group transition overflow-hidden">
+                <img src="img/aokhoac2.webp" alt="sp1"
+                    class="w-full h-32 object-contain mb-2 group-hover:scale-105 transition-transform duration-300">
+                <p class="font-semibold text-sm text-center group-hover:text-[#F58F5D] transition-colors">Áo Khoác Local
+                    Brand</p>
+                <span class="text-[#F58F5D] font-bold">350.000đ</span>
+            </a>
+            <a href="#"
+                class="rounded-2xl shadow-lg flex flex-col items-center bg-white p-4 group transition overflow-hidden">
+                <img src="img/aokhoac1.webp" alt="sp2"
+                    class="w-full h-32 object-contain mb-2 group-hover:scale-105 transition-transform duration-300">
+                <p class="font-semibold text-sm text-center group-hover:text-[#F58F5D] transition-colors">Áo Khoác
+                    Hoodie</p>
+                <span class="text-[#F58F5D] font-bold">420.000đ</span>
+            </a>
+            <a href="#"
+                class="rounded-2xl shadow-lg flex flex-col items-center bg-white p-4 group transition overflow-hidden">
+                <img src="img/aokhoac2.webp" alt="sp3"
+                    class="w-full h-32 object-contain mb-2 group-hover:scale-105 transition-transform duration-300">
+                <p class="font-semibold text-sm text-center group-hover:text-[#F58F5D] transition-colors">Áo Khoác
+                    Bomber</p>
+                <span class="text-[#F58F5D] font-bold">390.000đ</span>
+            </a>
+            <a href="#"
+                class="rounded-2xl shadow-lg flex flex-col items-center bg-white p-4 group transition overflow-hidden">
+                <img src="img/aokhoac1.webp" alt="sp4"
+                    class="w-full h-32 object-contain mb-2 group-hover:scale-105 transition-transform duration-300">
+                <p class="font-semibold text-sm text-center group-hover:text-[#F58F5D] transition-colors">Áo Khoác Dù
+                </p>
+                <span class="text-[#F58F5D] font-bold">310.000đ</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Modal phóng to ảnh -->
+    <div id="imgModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] hidden">
+        <img id="imgModalContent" src="img/aokhoac1.webp"
+            class="max-h-[90vh] max-w-[90vw] rounded-2xl shadow-2xl border-4 border-white" alt="Zoomed Image">
+        <button id="closeImgModal"
+            class="absolute top-6 right-8 text-white text-3xl bg-black/50 rounded-full p-2 hover:bg-[#F58F5D] transition"><i
+                class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <footer class="bg-white/80 py-6 mt-8 text-center text-gray-500 text-sm">
+        © 2024 ENCO Shop. All rights reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchToggle = document.getElementById('searchToggle');
+            const searchModal = document.getElementById('searchModal');
+            const searchContainer = document.getElementById('searchContainer');
+            const closeSearch = document.getElementById('closeSearch');
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.querySelectorAll('#searchSuggestions span');
+            const hotSearchItems = document.querySelectorAll('#hotSearch .flex');
+
+            // Open search modal
+            searchToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                openSearchModal();
+            });
+
+            // Close search modal
+            closeSearch.addEventListener('click', function () {
+                closeSearchModal();
+            });
+
+            // Close modal when clicking outside
+            searchModal.addEventListener('click', function (e) {
+                if (e.target === searchModal) {
+                    closeSearchModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+                    closeSearchModal();
+                }
+            });
+
+            // Handle search suggestions
+            searchSuggestions.forEach(suggestion => {
+                suggestion.addEventListener('click', function () {
+                    searchInput.value = this.textContent;
+                    searchInput.focus();
+                });
+            });
+
+            // Handle hot search items
+            hotSearchItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const searchText = this.querySelector('span:last-child').textContent;
+                    searchInput.value = searchText;
+                    searchInput.focus();
+                });
+            });
+
+            // Handle form submission
+            document.getElementById('searchForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    console.log('Searching for:', searchTerm);
+                    // Add your search logic here
+                    closeSearchModal();
+                }
+            });
+
+            function openSearchModal() {
+                searchModal.classList.remove('hidden');
+                // Trigger animation after a small delay
+                setTimeout(() => {
+                    searchContainer.classList.remove('scale-95', 'opacity-0');
+                    searchContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                // Focus on input after animation
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+            }
+
+            function closeSearchModal() {
+                searchContainer.classList.remove('scale-100', 'opacity-100');
+                searchContainer.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    searchModal.classList.add('hidden');
+                    searchInput.value = '';
+                }, 300);
+            }
+
+            // Xử lý đổi ảnh sản phẩm chính khi click thumbnail và border active
+            const mainImg = document.querySelector('.main-product-img');
+            const thumbs = document.querySelectorAll('.product-thumb');
+            thumbs.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    mainImg.src = this.src;
+                    thumbs.forEach(t => t.classList.remove('active-thumb'));
+                    this.classList.add('active-thumb');
+                });
+            });
+            // Đảm bảo chỉ thumbnail đầu tiên active khi load
+            thumbs.forEach((t, i) => t.classList.toggle('active-thumb', i === 0));
+
+            // Phóng to ảnh sản phẩm chính khi click
+            const imgModal = document.getElementById('imgModal');
+            const imgModalContent = document.getElementById('imgModalContent');
+            const closeImgModal = document.getElementById('closeImgModal');
+            if (mainImg && imgModal && imgModalContent && closeImgModal) {
+                mainImg.addEventListener('click', function () {
+                    imgModalContent.src = mainImg.src;
+                    imgModal.classList.remove('hidden');
+                });
+                closeImgModal.addEventListener('click', function () {
+                    imgModal.classList.add('hidden');
+                });
+                imgModal.addEventListener('click', function (e) {
+                    if (e.target === imgModal) imgModal.classList.add('hidden');
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') imgModal.classList.add('hidden');
+                });
+            }
+
+            // Đồng bộ giá trị tổng tiền cho nút mobile
+            const totalPriceMobile = document.getElementById('totalPriceMobile');
+            if (totalPriceMobile && totalPriceSpan) {
+                totalPriceMobile.textContent = totalPriceSpan.textContent;
+                // Cập nhật khi thay đổi số lượng
+                decreaseBtn.addEventListener('click', function() {
+                    totalPriceMobile.textContent = totalPriceSpan.textContent;
+                });
+                increaseBtn.addEventListener('click', function() {
+                    totalPriceMobile.textContent = totalPriceSpan.textContent;
+                });
+            }
+
+            // Xử lý selector số lượng cho mobile
+            const decreaseBtnMobile = document.getElementById('decreaseQtyMobile');
+            const increaseBtnMobile = document.getElementById('increaseQtyMobile');
+            const quantitySpanMobile = document.getElementById('quantityMobile');
+            const pricePerItemMobile = 390000;
+            function formatVNDMobile(n) {
+                return n.toLocaleString('vi-VN') + 'đ';
+            }
+            function updateQtyBtnStateMobile(qty) {
+                if (qty <= 1) {
+                    decreaseBtnMobile.disabled = true;
+                } else {
+                    decreaseBtnMobile.disabled = false;
+                }
+            }
+            if (decreaseBtnMobile && increaseBtnMobile && quantitySpanMobile && totalPriceMobile) {
+                decreaseBtnMobile.onclick = () => {
+                    let qty = parseInt(quantitySpanMobile.textContent, 10);
+                    if (qty > 1) qty--;
+                    quantitySpanMobile.textContent = qty;
+                    totalPriceMobile.textContent = formatVNDMobile(qty * pricePerItemMobile);
+                    updateQtyBtnStateMobile(qty);
+                };
+                increaseBtnMobile.onclick = () => {
+                    let qty = parseInt(quantitySpanMobile.textContent, 10);
+                    qty++;
+                    quantitySpanMobile.textContent = qty;
+                    totalPriceMobile.textContent = formatVNDMobile(qty * pricePerItemMobile);
+                    updateQtyBtnStateMobile(qty);
+                };
+                // Khởi tạo trạng thái ban đầu
+                updateQtyBtnStateMobile(1);
+            }
+        });
+
+        // Header hide/show on scroll (tối ưu, không delay, không điều kiện)
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.querySelector('header');
+            let lastScrollY = window.scrollY;
+            header.classList.add('transition-transform', 'duration-500', 'ease-in-out');
+            header.style.transform = 'translateX(-50%) translateY(0)';
+
+            window.addEventListener('scroll', function () {
+                const currentScrollY = window.scrollY;
+                if (currentScrollY > lastScrollY) {
+                    // Lăn xuống, ẩn header
+                    header.style.transform = 'translateX(-50%) translateY(-150%)';
+                } else if (currentScrollY < lastScrollY) {
+                    // Lăn lên, hiện header
+                    header.style.transform = 'translateX(-50%) translateY(0)';
+                }
+                lastScrollY = currentScrollY;
+            });
+        });
+
+        // Mobile nav toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const closeMobileNav = document.getElementById('closeMobileNav');
+
+        mobileMenuBtn && mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('-translate-x-full');
+            mobileNavOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        closeMobileNav && closeMobileNav.addEventListener('click', () => {
+            mobileNav.classList.add('-translate-x-full');
+            mobileNavOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        mobileNavOverlay && mobileNavOverlay.addEventListener('click', () => {
+            mobileNav.classList.add('-translate-x-full');
+            mobileNavOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Mobile search modal trigger
+        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+        // searchModal, searchContainer, searchInput đã được khai báo ở trên
+        mobileSearchBtn && mobileSearchBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            // Đóng nav mobile nếu đang mở
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            if (mobileNav) mobileNav.classList.add('-translate-x-full');
+            if (mobileNavOverlay) mobileNavOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+            // Mở Search Modal trực tiếp
+            if (searchModal && searchContainer && searchInput) {
+                searchModal.classList.remove('hidden');
+                setTimeout(() => {
+                    searchContainer.classList.remove('scale-95', 'opacity-0');
+                    searchContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+            }
+        });
+
+        // Nút về đầu trang
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('hidden');
+                backToTopBtn.classList.add('flex');
+            } else {
+                backToTopBtn.classList.add('hidden');
+                backToTopBtn.classList.remove('flex');
+            }
+        });
+        backToTopBtn && backToTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const decreaseBtn = document.getElementById('decreaseQty');
+        const increaseBtn = document.getElementById('increaseQty');
+        const quantitySpan = document.getElementById('quantity');
+        const totalPriceSpan = document.getElementById('totalPrice');
+        const pricePerItem = 800000; // giá 1 sản phẩm
+
+        function formatVND(n) {
+            return n.toLocaleString('vi-VN') + 'đ';
+        }
+
+        function updateQtyBtnState(qty) {
+            if (qty <= 1) {
+                decreaseBtn.disabled = true;
+            } else {
+                decreaseBtn.disabled = false;
+            }
+        }
+
+        decreaseBtn.onclick = () => {
+            let qty = parseInt(quantitySpan.textContent, 10);
+            if (qty > 1) qty--;
+            quantitySpan.textContent = qty;
+            totalPriceSpan.textContent = formatVND(qty * pricePerItem);
+            updateQtyBtnState(qty);
+        };
+        increaseBtn.onclick = () => {
+            let qty = parseInt(quantitySpan.textContent, 10);
+            qty++;
+            quantitySpan.textContent = qty;
+            totalPriceSpan.textContent = formatVND(qty * pricePerItem);
+            updateQtyBtnState(qty);
+        };
+        // Khởi tạo trạng thái ban đầu
+        updateQtyBtnState(1);
+
+        const colorDots = document.querySelectorAll('.color-dot');
+        const selectedColor = document.getElementById('selectedColor');
+        colorDots.forEach((dot, i) => {
+            dot.addEventListener('click', function () {
+                colorDots.forEach(d => {
+                    d.classList.remove('selected');
+                    d.innerHTML = '';
+                });
+                this.classList.add('selected');
+                this.innerHTML = '<i class="fa-solid fa-check"></i>';
+                selectedColor.textContent = this.getAttribute('data-color');
+            });
+            // Mặc định chọn màu đầu tiên
+            if (i === 0) {
+                dot.classList.add('selected');
+                dot.innerHTML = '<i class="fa-solid fa-check"></i>';
+            }
+        });
+    </script>
+</body>
+
+</html>
